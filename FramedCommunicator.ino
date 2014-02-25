@@ -25,11 +25,11 @@ void printMessageInfo(byte messageLength) {
 byte readMessage(byte messageBuffer[]) {
   // Reads up to one message into the buffer and returns the length.
   byte serialInput, messageLength = 0;
-  while (messageLength < frameSize) {
-    if (readByte(serialInput) && serialInput != '\n') {
-      *messageBuffer++ = serialInput;
-      messageLength++;
-    }
+  while (messageLength < frameSize
+         && readByte(serialInput)
+         && serialInput != '\n') {
+    *messageBuffer++ = serialInput;
+    messageLength++;
   }
   return messageLength;
 }
